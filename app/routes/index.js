@@ -1,9 +1,1 @@
-import express from "express";
-
-const routes = express.Router();
-
-routes.get("/", (req, res) => {
-  return res.json({ name: "Ciclano Fulano" });
-});
-
-export { routes as default };
+// tentar exportar todas as rotas depois ou deixar de uma maneira mais limpas
