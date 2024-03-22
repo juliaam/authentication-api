@@ -8,7 +8,7 @@ const sequelize = new Sequelize({
 class User extends Model {}
 User.init({
   // Model attributes are defined here
-  id_user: {
+  id: {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,

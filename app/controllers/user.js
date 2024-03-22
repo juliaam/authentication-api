@@ -27,6 +27,3 @@ const UserService = require('../services/user')
 
 
 }
-// }
-
-// module.exports = UserController

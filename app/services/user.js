@@ -1,15 +1,19 @@
 const User = require('../models/user')
+const Person = require('../models/person')
 
 module.exports = {
      async register(body){
-          const user = await User.findOne({
-               where: {
-                    id: dto.id
-               }
+          const person = await Person.create({
+               name: body.name
           })
-          if (user) {
-               throw new Error('User already exists')
-          }
+          const user = await User.create({
+               id_person: person.id,
+               email: body.email,
+               password: body.password,
+          })
+
+          return {user, person} 
+          
      },
      async FindAll(){
           const users = await User.FindAll()
