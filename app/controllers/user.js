@@ -1,22 +1,26 @@
 const UserService = require('../services/user')
 const PersonService = require('../services/person')
+const sequelize = require('../../db')
 
-    module.exports = {
+module.exports = {
     async register(req, res) {
         const { name, email, password } = req.body
         try {
-            const person = await PersonService.create({ name })
-            const user = await UserService.register( person, { email, password })
-            if(!user) {
-                return res.status(400).send('Algo deu errado, não foi possível criar um usuário')
-            }
-            return res.status(201).send(user)
+            const result = await sequelize.transaction(async (tr) => {
+                const person = await PersonService.create({ name }, tr)
+                const user = await UserService.register(person, { email, password }, tr)
+                if (!user) {
+                    return res.status(400).send('Algo deu errado, não foi possível criar um usuário')
+                }
+                return res.status(201).send(user)
+            })
+            return result
         }
         catch (error) {
             res.status(400).send({ message: error.message })
         }
     },
-        async FindAll(req, res) {
+    async FindAll(req, res) {
         try {
             const users = UserService.FindAll()
             res.status(201).send(users)
@@ -24,7 +28,7 @@ const PersonService = require('../services/person')
             res.status(400).send('Não foi possível')
         }
     },
-        async FindById(req, res) {
+    async FindById(req, res) {
     }
 
 

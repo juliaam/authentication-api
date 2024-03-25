@@ -1,11 +1,16 @@
 const Person = require('../models/person')
 
 module.exports = {
-     async create(body) {
+     async create(body, tr) {
+          if(!tr) {
+               const person = await Person.create({
+                    name: body.name
+               })
+               return person
+          }
           const person = await Person.create({
                name: body.name
-          })
-
-          return { person }
+          }, { transaction: tr });
+          return person
      }
 }

@@ -1,5 +1,5 @@
 const { DataTypes, Model } = require('sequelize');
-import sequelize from '../../db'
+const sequelize = require('../../db')
 
 class User extends Model { }
 User.init({
@@ -37,6 +37,11 @@ User.init({
   }
 }, {
   // Other model options go here
+  freezeTableName: true,
   sequelize: sequelize,
-  modelName: 'User', // We need to choose the model name
+  modelName: 'user', // We need to choose the model name
+  timestamps: false
 });
+
+module.exports = User;
+

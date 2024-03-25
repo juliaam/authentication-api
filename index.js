@@ -3,6 +3,8 @@ const cors = require("cors");
 const app = express();
 const sequelize = require('./db')
 
+const userRouter = require('./app/routes/user')
+
 var corsOptions = {
   origin: "http://localhost:3000",
   optionsSuccessStatus: 200
@@ -11,10 +13,15 @@ var corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-  
+
 app.listen(3000, () => {
   console.log(`Server is running on port 3000.`);
 });
+
+//routers 
+
+app.use('/api/user', userRouter);
+
 
 sequelize.authenticate().then(() => {
   console.log('Connection has been established successfully.');

@@ -10,4 +10,4 @@ const dialect = database.dialect;
 
 const sequelizeInstance = new Sequelize(`${dialect}://${dbUser}:${dbPassword}@${dbHost}:${dbPort}/${dbName}`);
 
-module.exports = sequelizeInstance
+module.exports = sequelizeInstance;
