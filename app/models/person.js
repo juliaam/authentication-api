@@ -1,9 +1,5 @@
 const { DataTypes, Model } = require('sequelize');
-const Sequelize = require('sequelize')
-const sequelize = new Sequelize({
-  dialect: 'mysql',
-  storage: './config/database.js'
-})
+import sequelize from '../../db'
 
 class Person extends Model { }
 Person.init({

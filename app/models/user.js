@@ -1,11 +1,7 @@
 const { DataTypes, Model } = require('sequelize');
-const Sequelize = require('sequelize')
-const sequelize = new Sequelize({
-  dialect: 'mysql',
-  storage: './config/database.js'
-})
+import sequelize from '../../db'
 
-class User extends Model {}
+class User extends Model { }
 User.init({
   // Model attributes are defined here
   id: {
@@ -16,7 +12,7 @@ User.init({
   },
   id_person: {
     allowNull: false,
-    references: { model: 'person', key: 'id_person'},
+    references: { model: 'person', key: 'id_person' },
     type: DataTypes.INTEGER
   },
   email: {
