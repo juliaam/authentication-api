@@ -1,13 +1,21 @@
-const express = require("express") 
+const express = require("express");
+const cors = require("cors");
 const app = express();
-const bodyParser = require("body-parser")
 
-const userRouter = require('./app/routes/user')
+var corsOptions = {
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
-app.get('/', (req, res) => {
-    res.send('REQUEST /')
-})
-app.use('/api/user', userRouter);
+app.use(express.urlencoded({ extended: true }));
 
-app.listen(3000, () => console.log("Server running in the port: 3000"));
+app.get('/teste', function (req, res) {
+  res.send('server running');
+});
+
+app.listen(3000, () => {
+  console.log(`Server is running on port 3000.`);
+});

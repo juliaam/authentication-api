@@ -44,4 +44,3 @@ User.init({
   sequelize: sequelize,
   modelName: 'User', // We need to choose the model name
 });
-

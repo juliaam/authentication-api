@@ -18,7 +18,7 @@ Person.init({
   },
 }, {
   // Other model options go here
+  freezeTableName: true,
   sequelize: sequelize,
   modelName: 'Person', // We need to choose the model name
 });
-

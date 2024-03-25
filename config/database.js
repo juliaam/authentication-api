@@ -1,8 +1,8 @@
-module.exports = {
-  username: 'root',
-  password: 'pRjc0102',
-  database: 'cadastrodb',
-  host: 'localhost',
-  dialect: 'mysql',
-  port: '3308'
-}
+  module.exports = {
+    dialect: 'mysql',
+    host: 'localhost',
+    username: 'root',
+    password: 'pRjc0102',
+    database: 'cadastrodb',
+    port: '3308'
+  }

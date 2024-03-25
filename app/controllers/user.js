@@ -1,10 +1,12 @@
 const UserService = require('../services/user')
+const PersonService = require('../services/person')
 
     module.exports = {
     async register(req, res) {
         const { name, email, password } = req.body
         try {
-            const user = await UserService.register({ name, email, password })
+            const person = await PersonService.create({ name })
+            const user = await UserService.register( person, { email, password })
             if(!user) {
                 return res.status(400).send('Algo deu errado, não foi possível criar um usuário')
             }
