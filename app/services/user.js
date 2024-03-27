@@ -1,4 +1,6 @@
 const User = require('../models/user')
+const Person = require('../models/person')
+
 
 module.exports = {
      async register(person, bodyPerson, tr){
@@ -21,8 +23,54 @@ module.exports = {
           }, { transaction: tr })
           return {user, person} 
      },
-     async FindAll(){
-          const users = await User.FindAll()
+     async findAll(){
+          const users = await User.findAndCountAll()
           return users
+     },
+     async findById(id) {
+          try {
+               const user = await User.findOne({
+                    where: {
+                         id: id
+                    }
+               })
+               return user
+          } catch (error) {
+               return error
+          }
+
+     },
+     async update(id, body, tr) {
+          if(!tr) {
+               const user = await User.update(body, {
+                    where: {
+                         id: id
+                    }
+                    
+               })
+          }
+          const user = await User.update(body, {
+               where: {
+                    id: id
+               }
+          }, { transaction: tr });
+          return user
+     },
+     async delete(id, tr) {
+          if(!tr) {
+               const user = await User.destroy({
+                    where: {
+                         id: id
+                    }
+                    
+               })
+               return user
+          }
+          const user = await User.destroy({
+               where: {
+                    id: id
+               }
+          }, { transaction: tr });
+          return user
      }
 }
