@@ -1,13 +1,8 @@
-const Sequelize = require('sequelize');
-const database = require('./config/database')
+import Sequelize from 'sequelize';
+import databaseConfig from './config/database.js';
 
-const dbName = database.database; // passar os dados do .env para as constantes
-const dbUser = database.username;
-const dbHost = database.host;
-const dbPassword = database.password;
-const dbPort = database.port;
-const dialect = database.dialect;
+const { database, username, host, password, port, dialect } = databaseConfig;
 
-const sequelizeInstance = new Sequelize(`${dialect}://${dbUser}:${dbPassword}@${dbHost}:${dbPort}/${dbName}`);
+const sequelizeInstance = new Sequelize(`${dialect}://${username}:${password}@${host}:${port}/${database}`);
 
-module.exports = sequelizeInstance;
+export default sequelizeInstance;

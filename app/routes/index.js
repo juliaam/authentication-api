@@ -1,1 +1,0 @@
-// tentar exportar todas as rotas depois ou deixar de uma maneira mais limpas

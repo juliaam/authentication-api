@@ -1,8 +1,6 @@
-const User = require('../models/user')
-const Person = require('../models/person')
+import User from '../models/user.js';
 
-
-module.exports = {
+export default {
      async register(person, bodyPerson, tr){
           if(!tr) {
                const user = await User.create({
@@ -11,8 +9,8 @@ module.exports = {
                     password: bodyPerson.password,
                     isActive: 1,
                     created_at: new Date()
-               })
-               return {user, person} 
+               });
+               return {user, person};
           }
           const user = await User.create({
                id_person: person.id,
@@ -20,12 +18,12 @@ module.exports = {
                password: bodyPerson.password,
                isActive: 1,
                created_at: new Date()
-          }, { transaction: tr })
-          return {user, person} 
+          }, { transaction: tr });
+          return {user, person};
      },
      async findAll(){
-          const users = await User.findAndCountAll()
-          return users
+          const users = await User.findAndCountAll();
+          return users;
      },
      async findById(id) {
           try {
@@ -33,12 +31,11 @@ module.exports = {
                     where: {
                          id: id
                     }
-               })
-               return user
+               });
+               return user;
           } catch (error) {
-               return error
+               return error;
           }
-
      },
      async update(id, body, tr) {
           if(!tr) {
@@ -46,15 +43,14 @@ module.exports = {
                     where: {
                          id: id
                     }
-                    
-               })
+               });
           }
           const user = await User.update(body, {
                where: {
                     id: id
                }
           }, { transaction: tr });
-          return user
+          return user;
      },
      async delete(id, tr) {
           if(!tr) {
@@ -62,15 +58,14 @@ module.exports = {
                     where: {
                          id: id
                     }
-                    
-               })
-               return user
+               });
+               return user;
           }
           const user = await User.destroy({
                where: {
                     id: id
                }
           }, { transaction: tr });
-          return user
+          return user;
      }
-}
+};
