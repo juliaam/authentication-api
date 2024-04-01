@@ -1,17 +1,17 @@
-const Person = require('../models/person')
+import Person from '../models/person.js';
 
-module.exports = {
+export default {
      async create(body, tr) {
           if (!tr) {
                const person = await Person.create({
                     name: body.name
-               })
-               return person
+               });
+               return person;
           }
           const person = await Person.create({
                name: body.name
           }, { transaction: tr });
-          return person
+          return person;
      },
      async update(id, body, tr) {
           if (!tr) {
@@ -19,23 +19,27 @@ module.exports = {
                     where: {
                          id: id
                     }
-               })
-               return person
+               });
+               return person;
           }
           const person = await Person.update(body, {
                where: {
                     id: id
                }
           }, { transaction: tr });
-          return person
+          return person;
      },
      async findById(id) {
           const person = await Person.findOne({
                where: {
                     id: id
                }
-          })
-          return person
+          });
+          return person;
+     },
+     async findAll() {
+          const people = await Person.findAndCountAll();
+          return people;
      },
      async delete(id, tr) {
           if (!tr) {
@@ -43,14 +47,14 @@ module.exports = {
                     where: {
                          id: id
                     }
-               })
-               return person
+               });
+               return person;
           }
           const person = await Person.destroy({
                where: {
                     id: id
                }
           }, { transaction: tr });
-          return person
+          return person;
      }
-}
+};
