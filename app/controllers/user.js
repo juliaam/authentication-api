@@ -3,22 +3,6 @@ import PersonService from '../services/person.js';
 import sequelize from '../../db.js';
 
 const UserController = {
-    async Register(req, res) {
-        const { name, email, password } = req.body;
-        try {
-            const result = await sequelize.transaction(async (tr) => {
-                const person = await PersonService.create({ name }, tr);
-                const user = await UserService.register(person, { email, password }, tr);
-                if (!user) {
-                    return res.status(400).send('Algo deu errado, não foi possível criar um usuário');
-                }
-                return res.status(201).send(user);
-            });
-            return result;
-        } catch (error) {
-            res.status(400).send(`Algo deu errado com essa requisição, error: ${error.message}`);
-        }
-    },
     async Update(req, res) {
         try {
             const result = await sequelize.transaction(async (tr) => {

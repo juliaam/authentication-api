@@ -2,9 +2,12 @@
 import express from "express";
 import cors from "cors";
 import sequelize from './db.js';
+import authMiddleware from './app/middlewares/auth.js'
 
 import userRouter from './app/routes/user.js';
 import personRouter from './app/routes/person.js';
+import authRouter from './app/routes/auth.js';
+
 
 export const app = express();
 
@@ -14,6 +17,7 @@ var corsOptions = {
 }
 
 app.use(cors(corsOptions));
+// app.use(authMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -31,3 +35,5 @@ sequelize.authenticate().then(() => {
 
 app.use('/api/user', userRouter);
 app.use('/api/person', personRouter);
+app.use('/api/auth', authRouter);
+

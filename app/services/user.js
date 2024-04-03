@@ -6,7 +6,7 @@ export default {
                const user = await User.create({
                     id_person: person.id,
                     email: bodyPerson.email,
-                    password: bodyPerson.password,
+                    password: bodyPerson.hashedPassword,
                     isActive: 1,
                     created_at: new Date()
                });
@@ -15,7 +15,7 @@ export default {
           const user = await User.create({
                id_person: person.id,
                email: bodyPerson.email,
-               password: bodyPerson.password,
+               password: bodyPerson.hashedPassword,
                isActive: 1,
                created_at: new Date()
           }, { transaction: tr });
