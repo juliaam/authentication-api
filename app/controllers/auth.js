@@ -41,6 +41,9 @@ const AuthController = {
     async LogOut() {
         return res.status(200).send({ auth: false, token: null })
     },
+    async Verify(req, res) {
+        const { id } = req.params
+    }
 };
 
 export default AuthController;

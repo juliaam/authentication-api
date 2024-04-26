@@ -30,16 +30,14 @@ router.patch('/:id', PersonController.Update);
  *       description: Pessoa obtido com sucesso
  *      '400':
  *        description: Algo deu errado com essa requisição 
- *   patch:
- *     summary: Atualiza uma Pessoa
+ *   post:
+ *     summary: Cria uma Pessoa
  *     tags: [Person]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json
  *     responses:
- *      '201': 
- *       description: Pessoa atualizada com sucesso
  *      '400':
  *        description: Algo deu errado com essa requisição 
  * /person/{id}:
