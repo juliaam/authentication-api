@@ -4,19 +4,35 @@ import AuthService from '../services/auth.js';
 import sequelize from '../../db.js';
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import User from '../models/user.js';
+
 
 const AuthController = {
     async Register(req, res) {
         const { name, email, password } = req.body;
+
+        const user = await User.findOne({
+            where: {
+                email: email
+            }
+        })
+
+        if (user) return res.status(400).send("Usuário com esse email já existe!");
+
         try {
             const result = await sequelize.transaction(async (tr) => {
+
                 const person = await PersonService.create({ name }, tr);
                 const hashedPassword = await bcrypt.hash(password, 10)
                 const user = await UserService.register(person.dataValues, { email, hashedPassword }, tr);
+
+                const message = `${process.env.BASE_URL}/user/verify/${user.id}/${token.token}`;
+                await sendEmail(user.email, "Verify Email", message);
+
                 if (!user) {
                     return res.status(400).send('Algo deu errado, não foi possível registrar o usuário');
                 }
-                return res.status(201).send(user);
+                return res.status(201).send('Um email foi enviado pra sua conta, por favor, verifique');
             });
             return result;
         } catch (error) {

@@ -7,7 +7,7 @@ export default {
                     id_person: person.id,
                     email: bodyPerson.email,
                     password: bodyPerson.hashedPassword,
-                    isActive: 1,
+                    isVerified: 0,
                     created_at: new Date()
                });
                return { user, person };
@@ -16,7 +16,7 @@ export default {
                id_person: person.id,
                email: bodyPerson.email,
                password: bodyPerson.hashedPassword,
-               isActive: 1,
+               isVerified: 0,
                created_at: new Date()
           }, { transaction: tr });
           return { user, person };

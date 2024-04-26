@@ -3,7 +3,7 @@ import express from "express";
 import cors from "cors";
 import sequelize from './db.js';
 
-import authMiddleware from './app/middlewares/auth.js'
+// import authMiddleware from './app/middlewares/auth.js'
 
 import swaggerUi from 'swagger-ui-express';
 import { specs } from './docs/swagger.js'
@@ -42,4 +42,3 @@ sequelize.authenticate().then(() => {
 app.use('/api/users', userRouter);
 app.use('/api/person', personRouter);
 app.use('/api/auth', authRouter);
-

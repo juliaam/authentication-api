@@ -24,7 +24,7 @@ User.init({
     allowNull: false,
     type: DataTypes.STRING
   },
-  isActive: {
+  isVerified: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
   },

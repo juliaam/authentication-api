@@ -29,6 +29,9 @@ dependencies:
   mysql2:
     specifier: ^3.9.1
     version: 3.9.3
+  nodemailer:
+    specifier: ^6.9.13
+    version: 6.9.13
   nodemon:
     specifier: ^3.0.3
     version: 3.1.0
@@ -1565,6 +1568,11 @@ packages:
         optional: true
     dependencies:
       whatwg-url: 5.0.0
+    dev: false
+
+  /nodemailer@6.9.13:
+    resolution: {integrity: sha512-7o38Yogx6krdoBf3jCAqnIN4oSQFx+fMa0I7dK1D+me9kBxx12D+/33wSb+fhOCtIxvYJ+4x4IMEhmhCKfAiOA==}
+    engines: {node: '>=6.0.0'}
     dev: false
 
   /nodemon@3.1.0:

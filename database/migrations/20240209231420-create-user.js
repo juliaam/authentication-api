@@ -24,7 +24,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      isActive: {
+      isVerified: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
