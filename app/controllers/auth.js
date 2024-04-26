@@ -12,7 +12,7 @@ const AuthController = {
             const result = await sequelize.transaction(async (tr) => {
                 const person = await PersonService.create({ name }, tr);
                 const hashedPassword = await bcrypt.hash(password, 10)
-                const user = await UserService.register(person, { email, hashedPassword }, tr);
+                const user = await UserService.register(person.dataValues, { email, hashedPassword }, tr);
                 if (!user) {
                     return res.status(400).send('Algo deu errado, não foi possível registrar o usuário');
                 }
@@ -39,8 +39,8 @@ const AuthController = {
         }
     },
     async LogOut() {
-        return res.status(200).send({auth: false, token: null})
-    }
+        return res.status(200).send({ auth: false, token: null })
+    },
 };
 
 export default AuthController;

@@ -1,8 +1,8 @@
 import User from '../models/user.js';
 
 export default {
-     async register(person, bodyPerson, tr){
-          if(!tr) {
+     async register(person, bodyPerson, tr) {
+          if (!tr) {
                const user = await User.create({
                     id_person: person.id,
                     email: bodyPerson.email,
@@ -10,7 +10,7 @@ export default {
                     isActive: 1,
                     created_at: new Date()
                });
-               return {user, person};
+               return { user, person };
           }
           const user = await User.create({
                id_person: person.id,
@@ -19,9 +19,9 @@ export default {
                isActive: 1,
                created_at: new Date()
           }, { transaction: tr });
-          return {user, person};
+          return { user, person };
      },
-     async findAll(){
+     async findAll() {
           const users = await User.findAndCountAll();
           return users;
      },
@@ -38,7 +38,7 @@ export default {
           }
      },
      async update(id, body, tr) {
-          if(!tr) {
+          if (!tr) {
                const user = await User.update(body, {
                     where: {
                          id: id
@@ -53,7 +53,7 @@ export default {
           return user;
      },
      async delete(id, tr) {
-          if(!tr) {
+          if (!tr) {
                const user = await User.destroy({
                     where: {
                          id: id

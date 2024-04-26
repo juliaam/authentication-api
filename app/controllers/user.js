@@ -36,8 +36,9 @@ const UserController = {
         try {
             const { id } = req.params;
             const user = await UserService.findById(+id);
-            if(!user) {
-                throw new Error('Não foi possível encontrar esse usuário');
+            if (!user) {
+                res.status(404).send('Não foi possível encontrar esse usuário')
+                return
             }
             res.status(201).send(user);
 
@@ -48,13 +49,13 @@ const UserController = {
     async Delete(req, res) {
         try {
             const { id } = req.params;
-            const {id_person: idPerson} = await UserService.findById(+id);
+            const { id_person: idPerson } = await UserService.findById(+id);
 
             const result = await sequelize.transaction(async (tr) => {
                 const user = await UserService.delete(id, tr);
                 const personDeleted = await PersonService.delete(idPerson, tr);
 
-                res.status(201).send({user, personDeleted});
+                res.status(201).send({ user, personDeleted });
             });
             return result;
         } catch (error) {

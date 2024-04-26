@@ -2,12 +2,15 @@
 import express from "express";
 import cors from "cors";
 import sequelize from './db.js';
+
 import authMiddleware from './app/middlewares/auth.js'
+
+import swaggerUi from 'swagger-ui-express';
+import { specs } from './docs/swagger.js'
 
 import userRouter from './app/routes/user.js';
 import personRouter from './app/routes/person.js';
 import authRouter from './app/routes/auth.js';
-
 
 export const app = express();
 
@@ -21,6 +24,9 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
+
+
 app.listen(3000, () => {
   console.log(`Server is running on port 3000.`);
 });
@@ -33,7 +39,7 @@ sequelize.authenticate().then(() => {
 
 //routers 
 
-app.use('/api/user', userRouter);
+app.use('/api/users', userRouter);
 app.use('/api/person', personRouter);
 app.use('/api/auth', authRouter);
 
