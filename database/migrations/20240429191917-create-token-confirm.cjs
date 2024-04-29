@@ -2,37 +2,29 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('tokenConfirm', {
+    await queryInterface.createTable('TokenConfirms', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
+      id_user: {
+        allowNull: false,
+        references: { model: 'user', key: 'id'},
         type: Sequelize.INTEGER
       },
-      userId: {
-        type: Sequelize.INTEGER,
-            allowNull: false,
-            onUpdate: "cascade",
-            onDelete: "cascade",
-            references: { model: "user", key: "id" }
-      },
       token: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('tokenConfirm');
+    await queryInterface.dropTable('TokenConfirms');
   }
 };

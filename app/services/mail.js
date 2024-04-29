@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer'
 import dotenv from 'dotenv';
 dotenv.config();
 
-export async function sendEmail(email, token) {
+export async function sendEmail(emailDestination, subject, message) {
     try {
         const transporter = nodemailer.createTransport({
             host: "smtp-mail.outlook.com", 
@@ -19,9 +19,9 @@ export async function sendEmail(email, token) {
 
         await transporter.sendMail({
             from: 'projetocadastro@outlook.com',
-            to: 'juliademoraess@gmail.com',
-            subject: 'Confirme seu email',
-            text: `Projeto cadastro, confirme seu token: ${token}`,
+            to: emailDestination,
+            subject: subject,
+            text: message,
         });
         console.log("email sent sucessfully");
     } catch (error) {

@@ -93,9 +93,22 @@ router.get('/verify/:id/:token', AuthController.Verify);
  *   get:
  *     summary: Verifica o usuário com token
  *     tags: [Auth]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: id do usuário
+ *       - in: path
+ *         name: token
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: token to register
  *     responses:
  *       '201':
- *         description: Sucesso ao deslogar
+ *         description: Email verificado com sucesso!
  *       '400':
  *         description: Algo deu errado com essa requisição  
  */
