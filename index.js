@@ -3,7 +3,7 @@ import express from "express";
 import cors from "cors";
 import sequelize from './db.js';
 
-// import authMiddleware from './app/middlewares/auth.js'
+import authMiddleware from './app/middlewares/auth.js'
 
 import swaggerUi from 'swagger-ui-express';
 import { specs } from './docs/swagger.js'
@@ -20,7 +20,7 @@ var corsOptions = {
 }
 
 app.use(cors(corsOptions));
-// app.use(authMiddleware);
+app.use(authMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

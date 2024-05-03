@@ -1,10 +1,14 @@
+import jwt from 'jsonwebtoken'
+
 export default function verifyJWT(req, res, next) {
 
-  const exceptsPath = ['/api/auth/register', '/api-docs/'];
+  const exceptsPath = ['/api/auth/register', '/api-docs/', '/api/auth/login'];
   if (exceptsPath.includes(req.path)) return next();
 
-  var token = req.headers['x-access-token'];
-  if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
+  const authHeader = req.headers['authorization'];
+  const token = authHeader.substring(7);
+
+  if (!token || !authHeader.startsWith('Bearer ')) return res.status(401).send({ auth: false, message: 'No token provided.' });
   jwt.verify(token, process.env.SECRET, function (err, decoded) {
     if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
 

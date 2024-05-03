@@ -3,10 +3,8 @@ import AuthController from '../controllers/auth.js';
 
 const router = Router();
 
-router.post('/register', AuthController.Register);
 router.post('/login', AuthController.Login);
 router.get('/logout', AuthController.LogOut);
-router.get('/verify/:id/:token', AuthController.Verify);
 
 /**
  * Rotas de autenticaçao.
