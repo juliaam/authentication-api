@@ -34,10 +34,10 @@ export default {
         })
         return result
     },
-    async delete(id) {
+    async delete(userId) {
         const token = await TokenConfirm.destroy({
             where: {
-                id: id
+                id_user: userId
             }
         })
         return token

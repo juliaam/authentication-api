@@ -5,6 +5,8 @@ const router = Router();
 
 router.get('/:id', UserController.FindById);
 router.get('/', UserController.FindAll);
+router.post('/register', UserController.Register);
+router.get('/verify/:id/:token', UserController.Verify);
 router.patch('/:id', UserController.Update);
 router.delete('/:id', UserController.Delete);
 

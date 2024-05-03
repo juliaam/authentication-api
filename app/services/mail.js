@@ -9,7 +9,7 @@ export async function sendEmail(emailDestination, subject, message) {
             secureConnection: false, 
             port: 587, 
             auth: {
-                user: process.env.EMAIL,
+                user: process.env.MAIL,
                 pass: process.env.PASS
             },
             tls: {
@@ -18,15 +18,14 @@ export async function sendEmail(emailDestination, subject, message) {
         });
 
         await transporter.sendMail({
-            from: 'projetocadastro@outlook.com',
+            from: process.env.MAIL,
             to: emailDestination,
             subject: subject,
             text: message,
         });
         console.log("email sent sucessfully");
     } catch (error) {
-        console.log("email not sent");
-        console.log(error);
+        throw new Error(`Não foi possível enviar esse email, error: ${error.message}`);
     }
 
 }

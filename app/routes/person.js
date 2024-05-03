@@ -7,7 +7,6 @@ router.get('/:id', PersonController.FindById);
 router.get('/', PersonController.FindAll);
 router.post('/', PersonController.Create);
 router.patch('/:id', PersonController.Update);
-// router.delete('/:id', PersonController.Delete);
 
 /**
  * Rotas de pessoa.

@@ -37,6 +37,15 @@ export default {
                return error;
           }
      },
+     async findByEmail(email) {
+          const user = await User.findOne({
+               where: {
+                    email: email
+               },
+               attributes: { include: ['password'] }, 
+          });
+          return user;
+     },
      async update(id, body, tr) {
           if (!tr) {
                const user = await User.update(body, {

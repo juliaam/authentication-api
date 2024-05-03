@@ -40,7 +40,10 @@ User.init({
   freezeTableName: true,
   sequelize: sequelize,
   modelName: 'user', // We need to choose the model name
-  timestamps: false
+  timestamps: false,
+  defaultScope: {
+    attributes: { exclude: ['password'] },
+  }
 });
 
 export default User;
