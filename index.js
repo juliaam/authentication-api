@@ -4,6 +4,8 @@ import cors from "cors";
 import sequelize from './db.js';
 
 import authMiddleware from './app/middlewares/auth.js'
+import { loginValidator } from './app/validators/auth.js'
+import { registerValidator } from './app/validators/users.js'
 
 import swaggerUi from 'swagger-ui-express';
 import { specs } from './docs/swagger.js'
@@ -39,6 +41,6 @@ sequelize.authenticate().then(() => {
 
 //routers 
 
-app.use('/api/users', userRouter);
+app.use('/api/users', registerValidator, userRouter);
 app.use('/api/person', personRouter);
-app.use('/api/auth', authRouter);
+app.use('/api/auth', loginValidator, authRouter);

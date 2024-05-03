@@ -25,7 +25,7 @@ export async function sendEmail(emailDestination, subject, message) {
         });
         console.log("email sent sucessfully");
     } catch (error) {
-        throw new Error(`Não foi possível enviar esse email, error: ${error.message}`);
+        throw new Error('Não foi possível enviar esse email');
     }
 
 }
