@@ -1,12 +1,8 @@
+# Registration - Backend (In Progress)
 
-# Cadastro - Backend (Em andamento)
+This project allows users to register and log in using email, Google, or Facebook, with email confirmation required.
 
-Projeto que é possível fazer o cadastro e login por email, google ou facebook, com confirmação de email.
-
-
-
-
-## Stack utilizada
+## Tech Stack
 
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
@@ -14,15 +10,12 @@ Projeto que é possível fazer o cadastro e login por email, google ou facebook,
 ![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
 ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
 
+## Features
 
+- Login with email, Google, or Facebook
 
-
-## Funcionalidades
-
-- Login por email, google ou facebook
-
-
-## Documentação
+## Documentation
 
 [Swagger](https://localhost:3000/api-docs)
 
+---
